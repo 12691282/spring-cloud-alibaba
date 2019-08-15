@@ -1,147 +1,101 @@
-# Spring Cloud Alibaba
+Spring Cloud Alibaba 致力于提供微服务开发的一站式解决方案。此项目包含开发分布式应用微服务的必需组件，方便开发者通过 Spring Cloud 编程模型轻松使用这些组件来开发分布式应用服务。
 
-[![CircleCI](https://circleci.com/gh/alibaba/spring-cloud-alibaba/tree/master.svg?style=svg)](https://circleci.com/gh/alibaba/spring-cloud-alibaba/tree/master)
-[![Maven Central](https://img.shields.io/maven-central/v/com.alibaba.cloud/spring-cloud-alibaba-dependencies.svg?label=Maven%20Central)](https://search.maven.org/search?q=g:com.alibaba.cloud%20AND%20a:spring-cloud-alibaba-dependencies)
-[![Codecov](https://codecov.io/gh/alibaba/spring-cloud-alibaba/branch/master/graph/badge.svg)](https://codecov.io/gh/alibaba/spring-cloud-alibaba)
-[![License](https://img.shields.io/badge/license-Apache%202-4EB1BA.svg)](https://www.apache.org/licenses/LICENSE-2.0.html)
+依托 Spring Cloud Alibaba，您只需要添加一些注解和少量配置，就可以将 Spring Cloud 应用接入阿里微服务解决方案，通过阿里中间件来迅速搭建分布式应用系统。
 
-A project maintained by Alibaba.
+参考文档 请查看 WIKI 。
 
-See the [中文文档](https://github.com/alibaba/spring-cloud-alibaba/blob/master/README-zh.md) for Chinese readme.
+为 Spring Cloud Alibaba 贡献代码请参考 如何贡献 。
+主要功能
 
-Spring Cloud Alibaba provides a one-stop solution for distributed application development. It contains all the components required to develop distributed applications, making it easy for you to develop your applications using Spring Cloud.
+    服务限流降级：默认支持 WebServlet、WebFlux, OpenFeign、RestTemplate、Spring Cloud Gateway, Zuul, Dubbo 和 RocketMQ 限流降级功能的接入，可以在运行时通过控制台实时修改限流降级规则，还支持查看限流降级 Metrics 监控。
+    服务注册与发现：适配 Spring Cloud 服务注册与发现标准，默认集成了 Ribbon 的支持。
+    分布式配置管理：支持分布式系统中的外部化配置，配置更改时自动刷新。
+    消息驱动能力：基于 Spring Cloud Stream 为微服务应用构建消息驱动能力。
+    分布式事务：使用 @GlobalTransactional 注解， 高效并且对业务零侵入地解决分布式事务问题。。
+    阿里云对象存储：阿里云提供的海量、安全、低成本、高可靠的云存储服务。支持在任何应用、任何时间、任何地点存储和访问任意类型的数据。
+    分布式任务调度：提供秒级、精准、高可靠、高可用的定时（基于 Cron 表达式）任务调度服务。同时提供分布式的任务执行模型，如网格任务。网格任务支持海量子任务均匀分配到所有 Worker（schedulerx-client）上执行。
+    阿里云短信服务：覆盖全球的短信服务，友好、高效、智能的互联化通讯能力，帮助企业迅速搭建客户触达通道。
 
-With Spring Cloud Alibaba, you only need to add some annotations and a small amount of configurations to connect Spring Cloud applications to the distributed solutions of Alibaba, and build a distributed application system with Alibaba middleware.
+更多功能请参考 Roadmap。
+组件
 
+Sentinel：把流量作为切入点，从流量控制、熔断降级、系统负载保护等多个维度保护服务的稳定性。
 
-## Features
+Nacos：一个更易于构建云原生应用的动态服务发现、配置管理和服务管理平台。
 
-* **Flow control and service degradation**：Flow control for HTTP services is supported by default. You can also customize flow control and service degradation rules using annotations. The rules can be changed dynamically.
-* **Service registration and discovery**：Service can be registered and clients can discover the instances using Spring-managed beans, auto integration Ribbon.
-* **Distributed configuration**：support for externalized configuration in a distributed system, auto refresh when configuration changes.
-* **Event-driven**：support for building highly scalable event-driven microservices connected with shared messaging systems.
-* **Distributed Transaction**：support for distributed transaction solution with high performance and ease of use.
-* **Alibaba Cloud Object Storage**：massive, secure, low-cost, and highly reliable cloud storage services. Support for storing and accessing any type of data in any application, anytime, anywhere.
-* **Alibaba Cloud SchedulerX**：accurate, highly reliable, and highly available scheduled job scheduling services with response time within seconds.
-* **Alibaba Cloud SMS**： A messaging service that covers the globe, Alibaba SMS provides convenient, efficient, and intelligent communication capabilities that help businesses quickly contact their customers.
+RocketMQ：一款开源的分布式消息系统，基于高可用分布式集群技术，提供低延时的、高可靠的消息发布与订阅服务。
 
-For more features, please refer to [Roadmap](https://github.com/alibaba/spring-cloud-alibaba/blob/master/Roadmap.md).
+Dubbo：Apache Dubbo™ 是一款高性能 Java RPC 框架。
 
-## Components
+Seata：阿里巴巴开源产品，一个易于使用的高性能微服务分布式事务解决方案。
 
-**[Sentinel](https://github.com/alibaba/Sentinel)**: Sentinel takes "traffic flow" as the breakthrough point, and provides solutions in areas such as flow control, concurrency, circuit breaking, and load protection to protect service stability.
+Alibaba Cloud ACM：一款在分布式架构环境中对应用配置进行集中管理和推送的应用配置中心产品。
 
-**[Nacos](https://github.com/alibaba/Nacos)**: An easy-to-use dynamic service discovery, configuration and service management platform for building cloud native applications.
+Alibaba Cloud OSS: 阿里云对象存储服务（Object Storage Service，简称 OSS），是阿里云提供的海量、安全、低成本、高可靠的云存储服务。您可以在任何应用、任何时间、任何地点存储和访问任意类型的数据。
 
-**[RocketMQ](https://rocketmq.apache.org/)**：A distributed messaging and streaming platform with low latency, high performance and reliability, trillion-level capacity and flexible scalability.
+Alibaba Cloud SchedulerX: 阿里中间件团队开发的一款分布式任务调度产品，提供秒级、精准、高可靠、高可用的定时（基于 Cron 表达式）任务调度服务。
 
-**[Dubbo](https://github.com/apache/dubbo)**：A high-performance, Java based open source RPC framework.
+Alibaba Cloud SMS: 覆盖全球的短信服务，友好、高效、智能的互联化通讯能力，帮助企业迅速搭建客户触达通道。
 
-**[Seata](https://github.com/seata/seata)**：A distributed transaction solution with high performance and ease of use for microservices architecture.
+更多组件请参考 Roadmap。
+如何构建
 
-**[Alibaba Cloud ACM](https://www.aliyun.com/product/acm)**：An application configuration center that enables you to centralize the management of application configurations, and accomplish real-time configuration push in a distributed environment.
+    master 分支对应的是 Spring Cloud Greenwich，最低支持 JDK 1.8。
+    finchley 分支对应的是 Spring Cloud Finchley，最低支持 JDK 1.8。
+    1.x 分支对应的是 Spring Cloud Edgware，最低支持 JDK 1.7。
 
-**[Alibaba Cloud OSS](https://www.aliyun.com/product/oss)**: An encrypted and secure cloud storage service which stores, processes and accesses massive amounts of data from anywhere in the world.
+Spring Cloud 使用 Maven 来构建，最快的使用方式是将本项目 clone 到本地，然后执行以下命令：
 
-**[Alibaba Cloud SMS](https://www.aliyun.com/product/sms)**: A messaging service that covers the globe, Alibaba SMS provides convenient, efficient, and intelligent communication capabilities that help businesses quickly contact their customers.
+./mvnw install
 
-**[Alibaba Cloud SchedulerX](https://www.aliyun.com/product/SchedulerX)**:accurate, highly reliable, and highly available scheduled job scheduling services with response time within seconds..
+执行完毕后，项目将被安装到本地 Maven 仓库。
+如何使用
+如何引入依赖
 
-For more features please refer to [Roadmap](https://github.com/alibaba/spring-cloud-alibaba/blob/master/Roadmap.md).
+如果需要使用已发布的版本，在 dependencyManagement 中添加如下配置。
 
-## How to build
+<dependencyManagement>
+    <dependencies>
+        <dependency>
+            <groupId>com.alibaba.cloud</groupId>
+            <artifactId>spring-cloud-alibaba-dependencies</artifactId>
+            <version>2.1.0.RELEASE</version>
+            <type>pom</type>
+            <scope>import</scope>
+        </dependency>
+    </dependencies>
+</dependencyManagement>
 
-* **master branch**: Corresponds to Spring Cloud Greenwich & Spring Boot 2.x. JDK 1.8 or later versions are supported.
-* **finchley branch**: Corresponds to Spring Cloud Finchley & Spring Boot 2.x. JDK 1.8 or later versions are supported.
-* **1.x branch**: Corresponds to Spring Cloud Edgware & Spring Boot 1.x, JDK 1.7 or later versions are supported.
+然后在 dependencies 中添加自己所需使用的依赖即可使用。
+演示 Demo
 
-Spring Cloud uses Maven for most build-related activities, and you should be able to get off the ground quite quickly by cloning the project you are interested in and typing:
+为了演示如何使用，Spring Cloud Alibaba 项目包含了一个子模块spring-cloud-alibaba-examples。此模块中提供了演示用的 example ，您可以阅读对应的 example 工程下的 readme 文档，根据里面的步骤来体验。
 
-	./mvnw install
+Example 列表：
 
+Sentinel Example
 
-## How to Use
+Nacos Config Example
 
-### Add maven dependency 
+Nacos Discovery Example
 
-These artifacts are available from Maven Central and Spring Release repository via BOM:
+RocketMQ Example
 
-	<dependencyManagement>
-        <dependencies>
-            <dependency>
-                <groupId>com.alibaba.cloud</groupId>
-                <artifactId>spring-cloud-alibaba-dependencies</artifactId>
-                <version>2.1.0.RELEASE</version>
-                <type>pom</type>
-                <scope>import</scope>
-            </dependency>
-        </dependencies>
-    </dependencyManagement>
+Seata Example
 
-add the module in  `dependencies`.
+Alibaba Cloud OSS Example
 
+Alibaba Cloud ANS Example
 
-### Reference Doc
+Alibaba Cloud ACM Example
 
-[Contents](https://github.com/alibaba/spring-cloud-alibaba/blob/master/spring-cloud-alibaba-docs/src/main/asciidoc-zh/spring-cloud-alibaba.adoc)
+Alibaba Cloud SchedulerX Example
+版本管理规范
 
-[Nacos Config](https://github.com/alibaba/spring-cloud-alibaba/blob/master/spring-cloud-alibaba-docs/src/main/asciidoc-zh/nacos-config.adoc)
+项目的版本号格式为 x.x.x 的形式，其中 x 的数值类型为数字，从 0 开始取值，且不限于 0~9 这个范围。项目处于孵化器阶段时，第一位版本号固定使用 0，即版本号为 0.x.x 的格式。
 
-[Nacos Discovery](https://github.com/alibaba/spring-cloud-alibaba/blob/master/spring-cloud-alibaba-docs/src/main/asciidoc-zh/nacos-discovery.adoc)
+由于 Spring Boot 1 和 Spring Boot 2 在 Actuator 模块的接口和注解有很大的变更，且 spring-cloud-commons 从 1.x.x 版本升级到 2.0.0 版本也有较大的变更，因此我们采取跟 SpringBoot 版本号一致的版本:
 
-[ACM](https://github.com/alibaba/spring-cloud-alibaba/blob/master/spring-cloud-alibaba-docs/src/main/asciidoc-zh/acm.adoc)
-
-
-## Examples
-
-A `spring-cloud-alibaba-examples` module is included in our project for you to get started with Spring Cloud Alibaba quickly. It contains an example, and you can refer to the readme file in the example project for a quick walkthrough.
-
-Examples：
-
-[Sentinel Example](https://github.com/alibaba/spring-cloud-alibaba/tree/master/spring-cloud-alibaba-examples/sentinel-example/sentinel-core-example/readme.md)
-
-[Nacos Config Example](https://github.com/alibaba/spring-cloud-alibaba/blob/master/spring-cloud-alibaba-examples/nacos-example/nacos-config-example/readme.md)
-
-[Nacos Discovery Example](https://github.com/alibaba/spring-cloud-alibaba/blob/master/spring-cloud-alibaba-examples/nacos-example/nacos-discovery-example/readme.md)
-
-[RocketMQ Example](https://github.com/alibaba/spring-cloud-alibaba/blob/master/spring-cloud-alibaba-examples/rocketmq-example/readme.md)
-
-[Alibaba Cloud OSS Example](https://github.com/alibaba/spring-cloud-alibaba/blob/master/spring-cloud-alibaba-examples/oss-example/readme.md)
-
-[Duboo Spring Cloud Example](https://github.com/alibaba/spring-cloud-alibaba/blob/master/spring-cloud-alibaba-examples/spring-cloud-alibaba-dubbo-examples/README_CN.md)
-
-## Version control guidelines
-The version number of the project is in the form of x.x.x, where x is a number, starting from 0, and is not limited to the range 0~9. When the project is in the incubator phase, the version number is 0.x.x.
-
-As the interfaces and annotations of Spring Boot 1 and Spring Boot 2 have been changed significantly in the Actuator module, and spring-cloud-commons is also changed quite a lot from 1.x.x to 2.0.0, we take the same version rule as SpringBoot version number.
-
-* 1.5.x for Spring Boot 1.5.x
-* 2.0.x for Spring Boot 2.0.x
-* 2.1.x for Spring Boot 2.1.x
-
-## Code of Conduct
-This project is a sub-project of Spring Cloud, it adheres to the Contributor Covenant [code of conduct](https://github.com/spring-cloud/spring-cloud-build/blob/master/docs/src/main/asciidoc/code-of-conduct.adoc). By participating, you are expected to uphold this code. Please report unacceptable behavior to spring-code-of-conduct@pivotal.io.
-
-## Code Conventions and Housekeeping
-None of these is essential for a pull request, but they will all help. They can also be added after the original pull request but before a merge.
-
-Use the Spring Framework code format conventions. If you use Eclipse you can import formatter settings using the eclipse-code-formatter.xml file from the Spring Cloud Build project. If using IntelliJ, you can use the Eclipse Code Formatter Plugin to import the same file.
-
-Make sure all new .java files to have a simple Javadoc class comment with at least an @author tag identifying you, and preferably at least a paragraph on what the class is for.
-
-Add the ASF license header comment to all new .java files (copy from existing files in the project)
-
-Add yourself as an @author to the .java files that you modify substantially (more than cosmetic changes).
-
-Add some Javadocs and, if you change the namespace, some XSD doc elements.
-
-A few unit tests would help a lot as well — someone has to do it.
-
-If no-one else is using your branch, please rebase it against the current master (or other target branch in the main project).
-
-When writing a commit message please follow these conventions, if you are fixing an existing issue please add Fixes gh-XXXX at the end of the commit message (where XXXX is the issue number).
-
-## Contact Us
-Mailing list is recommended for discussing almost anything related to spring-cloud-alibaba. 
-
-spring-cloud-alibaba@googlegroups.com:You can ask questions here if you encounter any problem when using or developing spring-cloud-alibaba.
+    1.5.x 版本适用于 Spring Boot 1.5.x
+    2.0.x 版本适用于 Spring Boot 2.0.x
+    2.1.x 版本适用于 Spring Boot 2.1.x
